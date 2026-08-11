@@ -6,6 +6,12 @@ happens when you put those ideas inside real software and games.
 
 I build things, measure them honestly, and write down the negative results too.
 
+## 🚀 Production infrastructure
+Real, deployed, live services — not demos.
+- **[OBSERVE Search API](https://api.observe-search.online/)** *(live product — source repo is private)* — a hosted, pay-per-query semantic code search API for AI agents, plus a real ACP (OpenAI/Stripe) and Google UCP-compatible agent-commerce discovery and reputation layer. Read both protocol specs directly before building, since neither one actually defines cross-merchant discovery — that gap is the product. Real Stripe billing, a live production deployment (Caddy, TLS, a reverse-proxied host), and a two-sided reputation system where trust is earned agreement between disconnected buyer/seller keys instead of a self-report. Same honest-negative-results discipline as the research below: three retrieval techniques borrowed from a competing tool were tested against its own corpus and measured net negative, documented instead of dropped quietly.
+- **[server-guard](https://github.com/gbranaa4-hue/server-guard)** — real-time server monitoring and alerting, benchmarked head-to-head against Datadog, Wazuh, PagerDuty, and Netdata on sourced, cited pricing rather than marketing claims.
+- **[spikeling-os](https://github.com/gbranaa4-hue/spikeling-os)** — a from-scratch x86_64 kernel whose task scheduler is driven by a spiking neural network — the same Spikeling runtime below, running as real kernel-level control logic instead of a simulation of one.
+
 ## 🔬 Research
 
 **Ternary & neuromorphic computing**
@@ -31,7 +37,9 @@ research above: verify it actually works before calling it done.
 
 ## The through-line
 Two research threads — neuromorphic and phononic — that keep testing the same
-question: **when does structure/symmetry actually *help* computation?** Two
-games put the neuromorphic side to work, and a couple of applied builds put
-the same discipline — measure it, verify it, report what actually happened —
-on ordinary hardware instead of exotic physics.
+question: **when does structure/symmetry actually *help* computation?** That
+question doesn't stay theoretical: the same neuromorphic engine drives two
+games and a from-scratch kernel scheduler, and the same discipline — measure
+it, verify it, report what actually happened, negative results included —
+carries all the way through to production software people can actually pay
+for and depend on, not just research code that stops at a benchmark script.
