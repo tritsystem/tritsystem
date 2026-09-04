@@ -8,6 +8,36 @@ I build things, measure them honestly, and write down the negative results too.
 
 [LinkedIn](https://www.linkedin.com/in/gavin-branaa-a23448170/)
 
+## 🔧 Open-source contributions (live)
+Bugs found and fixed in other people's libraries — mostly a recurring dtype-safety
+class (a state/gate tensor built with `device=` but no `dtype=`, so float16/bfloat16
+input gets silently upcast to float32) plus one new feature. This table is rewritten
+daily straight from the GitHub API by [a workflow](.github/workflows/oss-status.yml)
+in this repo, not typed by hand — it reflects whatever these PRs' real status is
+right now, merged or not.
+
+<!-- OSS-STATUS:START -->
+**1 merged &middot; 13 open PRs** &middot; refreshed 2026-09-04 15:38 UTC
+
+| Repo | # | What | Status |
+|---|---|---|---|
+| [spikingjelly](https://github.com/fangwei123456/spikingjelly) | [#743](https://github.com/fangwei123456/spikingjelly/pull/743) | Move tensor reset values with the module in MemoryModule._apply | Merged |
+| [spikingjelly](https://github.com/fangwei123456/spikingjelly) | [#744](https://github.com/fangwei123456/spikingjelly/pull/744) | Fix MSTDPLearner initialising eligibility without a dtype | Open - checks clean, awaiting review |
+| [spikingjelly](https://github.com/fangwei123456/spikingjelly) | [#745](https://github.com/fangwei123456/spikingjelly/pull/745) | Add regression test: neuron state and output follow module dtype | Open - checks clean, awaiting review |
+| [spikingjelly](https://github.com/fangwei123456/spikingjelly) | [#750](https://github.com/fangwei123456/spikingjelly/pull/750) | Add RAFNode: resonate-and-fire neuron | Open - checks clean, awaiting review |
+| [transformers](https://github.com/huggingface/transformers) | [#48509](https://github.com/huggingface/transformers/pull/48509) | Fix DynamicCache.reset() leaving the cache in a corrupt, non-empty ... | Open |
+| [snntorch](https://github.com/jeshraghian/snntorch) | [#441](https://github.com/jeshraghian/snntorch/pull/441) | Fix LeakyParallel silently ignoring a per-neuron beta; correct the ... | Open - checks clean, awaiting review |
+| [kornia](https://github.com/kornia/kornia) | [#4210](https://github.com/kornia/kornia/pull/4210) | fix(augmentation): auto-augment ops preserve float16 / bfloat16 inp... | Open - awaiting review |
+| [perceiver-pytorch](https://github.com/lucidrains/perceiver-pytorch) | [#70](https://github.com/lucidrains/perceiver-pytorch/pull/70) | fix: gated / mixed_latents Perceiver preserve float16 / bfloat16 in... | Open - checks clean, awaiting review |
+| [rotary-embedding-torch](https://github.com/lucidrains/rotary-embedding-torch) | [#50](https://github.com/lucidrains/rotary-embedding-torch/pull/50) | Keep long-sequence positions exact in float16 / bfloat16 | Open - checks clean, awaiting review |
+| [vit-pytorch](https://github.com/lucidrains/vit-pytorch) | [#373](https://github.com/lucidrains/vit-pytorch/pull/373) | fix(rvt): AxialRotaryEmbedding preserves float16 / bfloat16 input d... | Open - checks clean, awaiting review |
+| [audio](https://github.com/pytorch/audio) | [#4228](https://github.com/pytorch/audio/pull/4228) | Fix transforms.Fade silently promoting float16/bfloat16 waveforms t... | Open - CI issue |
+| [reservoirpy](https://github.com/reservoirpy/reservoirpy) | [#245](https://github.com/reservoirpy/reservoirpy/pull/245) | Make the dtype node parameter reach the node state and run output | Open - awaiting review |
+| [pytorch-esn](https://github.com/stefanonardo/pytorch-esn) | [#27](https://github.com/stefanonardo/pytorch-esn/pull/27) | Clear the accumulated ridge statistics in ESN.reset_parameters() | Open - checks clean, awaiting review |
+| [tenns-core](https://github.com/Brainchip-Inc/tenns-core) | [#1](https://github.com/Brainchip-Inc/tenns-core/pull/1) | Fix SSMLayerInference.reset_state() keeping a stale batch dim; make... | Draft |
+| [librosa](https://github.com/librosa/librosa) | [#2099](https://github.com/librosa/librosa/issues/2099) | feature.spectral_centroid / bandwidth / rolloff / contrast / poly_f... | Issue open, no PR yet |
+<!-- OSS-STATUS:END -->
+
 ## 🚀 Production infrastructure
 Real, deployed, live services — not demos.
 - **[OBSERVE Search API](https://api.observe-search.online/)** *(live product — [source](https://github.com/tritsystem/observe-api))* — a hosted, pay-per-query semantic code search API for AI agents, plus a real ACP (OpenAI/Stripe) and Google UCP-compatible agent-commerce discovery and reputation layer. Read both protocol specs directly before building, since neither one actually defines cross-merchant discovery — that gap is the product. Real Stripe billing, a live production deployment (Caddy, TLS, a reverse-proxied host), and a two-sided reputation system where trust is earned agreement between disconnected buyer/seller keys instead of a self-report. Same honest-negative-results discipline as the research below: three retrieval techniques borrowed from a competing tool were tested against its own corpus and measured net negative, documented instead of dropped quietly.
