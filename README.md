@@ -6,6 +6,8 @@ happens when you put those ideas inside real software and games.
 
 I build things, measure them honestly, and write down the negative results too.
 
+[LinkedIn](https://www.linkedin.com/in/gavin-branaa-a23448170/)
+
 ## 🚀 Production infrastructure
 Real, deployed, live services — not demos.
 - **[OBSERVE Search API](https://api.observe-search.online/)** *(live product — [source](https://github.com/tritsystem/observe-api))* — a hosted, pay-per-query semantic code search API for AI agents, plus a real ACP (OpenAI/Stripe) and Google UCP-compatible agent-commerce discovery and reputation layer. Read both protocol specs directly before building, since neither one actually defines cross-merchant discovery — that gap is the product. Real Stripe billing, a live production deployment (Caddy, TLS, a reverse-proxied host), and a two-sided reputation system where trust is earned agreement between disconnected buyer/seller keys instead of a self-report. Same honest-negative-results discipline as the research below: three retrieval techniques borrowed from a competing tool were tested against its own corpus and measured net negative, documented instead of dropped quietly.
