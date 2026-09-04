@@ -29,6 +29,7 @@ Real, deployed, live services — not demos.
 - **[topological-phononics](https://github.com/tritsystem/topological-phononics)** — does topological structure make an analog (SSH) reservoir tolerate a dead element? A pre-registered, honestly-scoped simulation study — boundary conditions and negative results reported as carefully as the positives.
 
 ## 🎮 Games (built on the same spiking-brain engine)
+Both are in active testing — expect bugs, and some builds may not be playable end-to-end.
 - **[tribe](https://github.com/tritsystem/tribe)** — a survival/RTS sim where every NPC (tribe members, animals, rival AI) is driven by a small spiking neural network instead of a behavior tree.
 - **[horde-defense-beta](https://github.com/tritsystem/horde-defense-beta)** — a 3D horde-defense game with a deck-building creep system.
 
