@@ -17,20 +17,20 @@ in this repo, not typed by hand — it reflects whatever these PRs' real status 
 right now, merged or not.
 
 <!-- OSS-STATUS:START -->
-**1 merged &middot; 13 open PRs** &middot; refreshed 2026-09-05 10:42 UTC
+**2 merged &middot; 12 open PRs** &middot; refreshed 2026-09-05 21:22 UTC
 
 | Repo | # | What | Status |
 |---|---|---|---|
 | [spikingjelly](https://github.com/fangwei123456/spikingjelly) | [#743](https://github.com/fangwei123456/spikingjelly/pull/743) | Move tensor reset values with the module in MemoryModule._apply | Merged |
+| [kornia](https://github.com/kornia/kornia) | [#4210](https://github.com/kornia/kornia/pull/4210) | fix(augmentation): auto-augment ops preserve float16 / bfloat16 inp... | Merged |
 | [spikingjelly](https://github.com/fangwei123456/spikingjelly) | [#744](https://github.com/fangwei123456/spikingjelly/pull/744) | Fix MSTDPLearner initialising eligibility without a dtype | Open - checks clean, awaiting review |
 | [spikingjelly](https://github.com/fangwei123456/spikingjelly) | [#745](https://github.com/fangwei123456/spikingjelly/pull/745) | Add regression test: neuron state and output follow module dtype | Open - checks clean, awaiting review |
 | [spikingjelly](https://github.com/fangwei123456/spikingjelly) | [#750](https://github.com/fangwei123456/spikingjelly/pull/750) | Add RAFNode: resonate-and-fire neuron | Open - checks clean, awaiting review |
-| [transformers](https://github.com/huggingface/transformers) | [#48509](https://github.com/huggingface/transformers/pull/48509) | Fix DynamicCache.reset() leaving the cache in a corrupt, non-empty ... | Open - awaiting review |
-| [snntorch](https://github.com/jeshraghian/snntorch) | [#441](https://github.com/jeshraghian/snntorch/pull/441) | Fix LeakyParallel silently ignoring a per-neuron beta; correct the ... | Open |
-| [kornia](https://github.com/kornia/kornia) | [#4210](https://github.com/kornia/kornia/pull/4210) | fix(augmentation): auto-augment ops preserve float16 / bfloat16 inp... | Open - awaiting review |
+| [transformers](https://github.com/huggingface/transformers) | [#48509](https://github.com/huggingface/transformers/pull/48509) | Fix DynamicCache.reset() leaving the cache in a corrupt, non-empty ... | Open |
+| [snntorch](https://github.com/jeshraghian/snntorch) | [#441](https://github.com/jeshraghian/snntorch/pull/441) | Fix LeakyParallel silently ignoring a per-neuron beta; correct the ... | Open - checks clean, awaiting review |
 | [perceiver-pytorch](https://github.com/lucidrains/perceiver-pytorch) | [#70](https://github.com/lucidrains/perceiver-pytorch/pull/70) | fix: gated / mixed_latents Perceiver preserve float16 / bfloat16 in... | Open - checks clean, awaiting review |
 | [rotary-embedding-torch](https://github.com/lucidrains/rotary-embedding-torch) | [#50](https://github.com/lucidrains/rotary-embedding-torch/pull/50) | Keep long-sequence positions exact in float16 / bfloat16 | Open - checks clean, awaiting review |
-| [vit-pytorch](https://github.com/lucidrains/vit-pytorch) | [#373](https://github.com/lucidrains/vit-pytorch/pull/373) | fix(rvt): AxialRotaryEmbedding preserves float16 / bfloat16 input d... | Open - checks clean, awaiting review |
+| [vit-pytorch](https://github.com/lucidrains/vit-pytorch) | [#373](https://github.com/lucidrains/vit-pytorch/pull/373) | fix(rvt): AxialRotaryEmbedding preserves float16 / bfloat16 input d... | Open |
 | [audio](https://github.com/pytorch/audio) | [#4228](https://github.com/pytorch/audio/pull/4228) | Fix transforms.Fade silently promoting float16/bfloat16 waveforms t... | Open - CI issue |
 | [reservoirpy](https://github.com/reservoirpy/reservoirpy) | [#245](https://github.com/reservoirpy/reservoirpy/pull/245) | Make the dtype node parameter reach the node state and run output | Open - awaiting review |
 | [pytorch-esn](https://github.com/stefanonardo/pytorch-esn) | [#27](https://github.com/stefanonardo/pytorch-esn/pull/27) | Clear the accumulated ridge statistics in ESN.reset_parameters() | Open - checks clean, awaiting review |
