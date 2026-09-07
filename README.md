@@ -20,10 +20,11 @@ record, including the open PRs still in review and the honest negatives, is in
 [research-portfolio/oss](https://github.com/tritsystem/research-portfolio/tree/main/oss).
 
 <!-- OSS-STATUS:START -->
-**7 merged &middot; 4 reported &amp; fixed upstream** &middot; refreshed 2026-09-07 10:10 UTC
+**8 merged &middot; 4 reported &amp; fixed upstream** &middot; refreshed 2026-09-07 12:44 UTC
 
 | Repo | # | What | Status |
 |---|---|---|---|
+| [celery](https://github.com/celery/celery) | [#10571](https://github.com/celery/celery/pull/10571) | Fix Signature.clone() sharing kwargs with the original signature | Merged 2026-09 |
 | [kornia](https://github.com/kornia/kornia) | [#4319](https://github.com/kornia/kornia/pull/4319) | fix(feature): register RenderingDeFMO's times as a buffer so .to() ... | Merged 2026-09 |
 | [kornia](https://github.com/kornia/kornia) | [#4303](https://github.com/kornia/kornia/pull/4303) | fix(geometry): bbox_to_mask3d intersects axis ranges for a full/ove... | Merged 2026-09 |
 | [kornia](https://github.com/kornia/kornia) | [#4299](https://github.com/kornia/kornia/pull/4299) | fix(geometry): finite gradients for solve_cubic at its acos boundary | Merged 2026-09 |
