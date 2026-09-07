@@ -5,6 +5,10 @@ ternary and neuromorphic architectures, physical (phononic) reservoirs, and what
 happens when you put those ideas inside real software and games.
 
 I build things, measure them honestly, and write down the negative results too.
+The discipline behind all of it is written down as
+[**The gbranaa4-hue Method**](https://github.com/tritsystem/research-portfolio/blob/main/METHOD.md)
+— measure don't infer, pre-register the verdict, and report the "no" as carefully
+as the "yes".
 
 [LinkedIn](https://www.linkedin.com/in/gavin-branaa-a23448170/)
 
