@@ -2,9 +2,17 @@
 """Refresh the live open-source contribution status table in README.md.
 
 Queries the GitHub REST API for every tracked PR/issue and rewrites the
-table between the OSS-STATUS markers. No hand-typed status ever goes stale:
-this script (run daily by .github/workflows/oss-status.yml) is the only
-thing that writes that block.
+table between the OSS-STATUS markers. This table lists ONLY what has
+actually landed:
+
+  * pull requests authored here that were **merged**, and
+  * bugs reported here (issue, no authored PR) that a maintainer then
+    fixed -- rendered only when the crediting PR is itself merged.
+
+Everything still in review lives in the full audited record at
+research-portfolio/oss. No hand-typed status: this script (run daily by
+.github/workflows/oss-status.yml) is the only thing that writes the block,
+and every row it emits is re-verified against the API on each run.
 """
 import json
 import os
@@ -14,22 +22,45 @@ import urllib.error
 import urllib.request
 from datetime import datetime, timezone
 
-TRACKED = [
-    ("fangwei123456/spikingjelly", 743, "pr"),
-    ("fangwei123456/spikingjelly", 744, "pr"),
-    ("fangwei123456/spikingjelly", 745, "pr"),
-    ("fangwei123456/spikingjelly", 750, "pr"),
-    ("jeshraghian/snntorch", 441, "pr"),
-    ("Brainchip-Inc/tenns-core", 1, "pr"),
-    ("reservoirpy/reservoirpy", 245, "pr"),
-    ("stefanonardo/pytorch-esn", 27, "pr"),
-    ("huggingface/transformers", 48509, "pr"),
-    ("pytorch/audio", 4228, "pr"),
-    ("kornia/kornia", 4210, "pr"),
-    ("lucidrains/rotary-embedding-torch", 50, "pr"),
-    ("lucidrains/perceiver-pytorch", 70, "pr"),
-    ("lucidrains/vit-pytorch", 373, "pr"),
-    ("librosa/librosa", 2099, "issue"),
+# (repo, number) -- PRs authored here. Rendered only if currently merged.
+# Kept in the list after merging so the row stays; kept before merging so a
+# later merge appears automatically.
+AUTHORED = [
+    ("fangwei123456/spikingjelly", 743),
+    ("fangwei123456/spikingjelly", 744),
+    ("fangwei123456/spikingjelly", 745),
+    ("fangwei123456/spikingjelly", 750),
+    ("kornia/kornia", 4210),
+    ("kornia/kornia", 4299),
+    ("kornia/kornia", 4303),
+    ("kornia/kornia", 4319),
+    ("kornia/kornia", 4336),
+    ("kornia/kornia", 4337),
+    ("jeshraghian/snntorch", 441),
+    ("SynSense/sinabs", 336),
+    ("Brainchip-Inc/tenns-core", 1),
+    ("reservoirpy/reservoirpy", 245),
+    ("stefanonardo/pytorch-esn", 27),
+    ("huggingface/transformers", 48509),
+    ("pytorch/audio", 4228),
+    ("lucidrains/rotary-embedding-torch", 50),
+    ("lucidrains/perceiver-pytorch", 70),
+    ("lucidrains/vit-pytorch", 373),
+    ("lucidrains/denoising-diffusion-pytorch", 370),
+    ("lucidrains/video-diffusion-pytorch", 40),
+    ("lucidrains/imagen-pytorch", 392),
+    ("ultralytics/ultralytics", 26075),
+    ("celery/celery", 10571),
+]
+
+# (repo, reported_issue, fixing_pr, credited_to) -- a bug reported here as an
+# issue that a maintainer then fixed with their own PR. Rendered only if the
+# fixing PR is currently merged (verified live, never asserted).
+FIXED_UPSTREAM = [
+    ("python-pillow/Pillow", 9963, 9964, "Andrew Murray"),
+    ("aio-libs/aiohttp", 13634, 13637, "Sam Bull"),
+    ("scipy/scipy", 26095, 26097, "j-bowhay"),
+    ("jeshraghian/snntorch", 430, 418, "maintainers"),
 ]
 
 TOKEN = os.environ.get("GITHUB_TOKEN", "")
@@ -52,77 +83,90 @@ def api_get(path):
         return json.loads(resp.read())
 
 
-def status_for_pr(data):
-    if data.get("merged"):
-        return 0, "Merged"
-    if data["state"] == "closed":
-        return 5, "Closed, not merged"
-    if data.get("draft"):
-        return 2, "Draft"
-    ms = (data.get("mergeable_state") or "unknown").lower()
-    label = {
-        "clean": "Open - checks clean, awaiting review",
-        "unstable": "Open - CI issue",
-        "blocked": "Open - awaiting review",
-        "dirty": "Open - merge conflicts",
-        "behind": "Open - behind base branch",
-    }.get(ms, "Open")
-    return 1, label
+def _month(iso):
+    if not iso:
+        return ""
+    return datetime.fromisoformat(iso.replace("Z", "+00:00")).strftime("%Y-%m")
 
 
-def status_for_issue(data):
-    if data["state"] == "closed":
-        return 4, "Issue closed"
-    return 3, "Issue open, no PR yet"
+def _short(title, n=70):
+    title = (title or "?").replace("|", "\\|")
+    return title if len(title) <= n else title[: n - 3] + "..."
 
 
-def fetch_row(repo, number, kind):
-    try:
-        if kind == "pr":
-            data = api_get(f"/repos/{repo}/pulls/{number}")
-            rank, label = status_for_pr(data)
-        else:
-            data = api_get(f"/repos/{repo}/issues/{number}")
-            rank, label = status_for_issue(data)
-        title = data.get("title", "?")
-        url = data.get("html_url", "")
-    except urllib.error.HTTPError as e:
-        rank, label = 6, f"couldn't check (HTTP {e.code})"
-        title = "?"
-        kind_path = "pull" if kind == "pr" else "issues"
-        url = f"https://github.com/{repo}/{kind_path}/{number}"
-    return {
-        "rank": rank,
-        "repo": repo,
-        "number": number,
-        "kind": kind,
-        "title": title,
-        "url": url,
-        "label": label,
-    }
+def authored_rows():
+    """Merged authored PRs, most-recent first."""
+    rows = []
+    for repo, number in AUTHORED:
+        try:
+            d = api_get(f"/repos/{repo}/pulls/{number}")
+        except urllib.error.HTTPError as e:
+            print(f"  ! {repo}#{number}: HTTP {e.code}", file=sys.stderr)
+            continue
+        if not d.get("merged"):
+            continue
+        rows.append(
+            {
+                "sort": d.get("merged_at") or "",
+                "repo": repo,
+                "number": number,
+                "url": d.get("html_url", f"https://github.com/{repo}/pull/{number}"),
+                "what": _short(d.get("title")),
+                "status": f"Merged {_month(d.get('merged_at'))}".rstrip(),
+            }
+        )
+    rows.sort(key=lambda r: r["sort"], reverse=True)
+    return rows
+
+
+def fixed_upstream_rows():
+    """Reported-then-fixed bugs whose crediting PR is merged."""
+    rows = []
+    for repo, issue_no, pr_no, who in FIXED_UPSTREAM:
+        try:
+            pr = api_get(f"/repos/{repo}/pulls/{pr_no}")
+        except urllib.error.HTTPError as e:
+            print(f"  ! {repo}#{pr_no}: HTTP {e.code}", file=sys.stderr)
+            continue
+        if not pr.get("merged"):
+            continue
+        try:
+            issue = api_get(f"/repos/{repo}/issues/{issue_no}")
+            what = _short(issue.get("title"))
+        except urllib.error.HTTPError:
+            what = _short(pr.get("title"))
+        rows.append(
+            {
+                "sort": pr.get("merged_at") or "",
+                "repo": repo,
+                "number": issue_no,
+                "url": f"https://github.com/{repo}/issues/{issue_no}",
+                "what": what,
+                "status": (
+                    f"Reported; fixed upstream by {who} "
+                    f"([#{pr_no}]({pr.get('html_url')}), merged {_month(pr.get('merged_at'))})"
+                ),
+            }
+        )
+    rows.sort(key=lambda r: r["sort"], reverse=True)
+    return rows
 
 
 def build_table():
-    rows = [fetch_row(repo, number, kind) for repo, number, kind in TRACKED]
-    rows.sort(key=lambda r: (r["rank"], r["repo"], r["number"]))
+    merged = authored_rows()
+    fixed = fixed_upstream_rows()
 
-    merged = sum(1 for r in rows if r["rank"] == 0)
-    open_prs = sum(1 for r in rows if r["kind"] == "pr" and r["rank"] not in (0, 5))
-
-    lines = [
-        f"**{merged} merged &middot; {open_prs} open PR{'s' if open_prs != 1 else ''}** "
-        f"&middot; refreshed {datetime.now(timezone.utc):%Y-%m-%d %H:%M} UTC",
-        "",
-        "| Repo | # | What | Status |",
-        "|---|---|---|---|",
-    ]
-    for r in rows:
+    header = (
+        f"**{len(merged)} merged &middot; {len(fixed)} reported &amp; fixed upstream** "
+        f"&middot; refreshed {datetime.now(timezone.utc):%Y-%m-%d %H:%M} UTC"
+    )
+    lines = [header, "", "| Repo | # | What | Status |", "|---|---|---|---|"]
+    for r in merged + fixed:
         short_repo = r["repo"].split("/")[-1]
-        title = r["title"].replace("|", "\\|")
-        if len(title) > 70:
-            title = title[:67] + "..."
         repo_url = f"https://github.com/{r['repo']}"
-        lines.append(f"| [{short_repo}]({repo_url}) | [#{r['number']}]({r['url']}) | {title} | {r['label']} |")
+        lines.append(
+            f"| [{short_repo}]({repo_url}) | [#{r['number']}]({r['url']}) | {r['what']} | {r['status']} |"
+        )
     return "\n".join(lines)
 
 
