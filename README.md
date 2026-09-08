@@ -24,10 +24,13 @@ record, including the open PRs still in review and the honest negatives, is in
 [research-portfolio/oss](https://github.com/tritsystem/research-portfolio/tree/main/oss).
 
 <!-- OSS-STATUS:START -->
-**8 merged &middot; 4 reported &amp; fixed upstream** &middot; refreshed 2026-09-07 12:44 UTC
+**11 merged &middot; 4 reported &amp; fixed upstream** &middot; refreshed 2026-09-08 11:26 UTC
 
 | Repo | # | What | Status |
 |---|---|---|---|
+| [kornia](https://github.com/kornia/kornia) | [#4336](https://github.com/kornia/kornia/pull/4336) | fix(geometry): bbox_to_mask position grid is exact at any image size | Merged 2026-09 |
+| [kornia](https://github.com/kornia/kornia) | [#4337](https://github.com/kornia/kornia/pull/4337) | fix(augmentation): register fill_value/sigma as buffers, not plain ... | Merged 2026-09 |
+| [ultralytics](https://github.com/ultralytics/ultralytics) | [#26075](https://github.com/ultralytics/ultralytics/pull/26075) | Remove stale SAM3 decoder coordinate caches | Merged 2026-09 |
 | [celery](https://github.com/celery/celery) | [#10571](https://github.com/celery/celery/pull/10571) | Fix Signature.clone() sharing kwargs with the original signature | Merged 2026-09 |
 | [kornia](https://github.com/kornia/kornia) | [#4319](https://github.com/kornia/kornia/pull/4319) | fix(feature): register RenderingDeFMO's times as a buffer so .to() ... | Merged 2026-09 |
 | [kornia](https://github.com/kornia/kornia) | [#4303](https://github.com/kornia/kornia/pull/4303) | fix(geometry): bbox_to_mask3d intersects axis ranges for a full/ove... | Merged 2026-09 |
