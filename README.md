@@ -24,7 +24,7 @@ record, including the open PRs still in review and the honest negatives, is in
 [research-portfolio/oss](https://github.com/tritsystem/research-portfolio/tree/main/oss).
 
 <!-- OSS-STATUS:START -->
-**11 merged &middot; 4 reported &amp; fixed upstream** &middot; refreshed 2026-09-08 11:26 UTC
+**11 merged &middot; 4 reported &amp; fixed upstream** &middot; refreshed 2026-09-17 02:13 UTC
 
 | Repo | # | What | Status |
 |---|---|---|---|
