@@ -15,7 +15,8 @@ as the "yes".
 ## 🔧 Open-source contributions (live)
 Bugs found in other people's libraries and fixed upstream — mostly a recurring
 dtype-safety class (a state/gate tensor built with `device=` but no `dtype=`, so
-float16/bfloat16 input gets silently upcast to float32), plus one new feature. This
+float16/bfloat16 input gets silently upcast to float32), plus three new features
+(a resonate-and-fire neuron, a synaptic-delay layer, and a custom-neuron generator). This
 table lists only what has **landed**: pull requests I authored that were merged, and
 bugs I reported that a maintainer then fixed. It is rewritten daily straight from the
 GitHub API by [a workflow](.github/workflows/oss-status.yml) in this repo — every row
@@ -24,10 +25,14 @@ record, including the open PRs still in review and the honest negatives, is in
 [research-portfolio/oss](https://github.com/tritsystem/research-portfolio/tree/main/oss).
 
 <!-- OSS-STATUS:START -->
-**11 merged &middot; 4 reported &amp; fixed upstream** &middot; refreshed 2026-09-17 02:13 UTC
+**15 merged &middot; 4 reported &amp; fixed upstream** &middot; refreshed 2026-09-20 20:32 UTC
 
 | Repo | # | What | Status |
 |---|---|---|---|
+| [snntorch](https://github.com/jeshraghian/snntorch) | [#455](https://github.com/jeshraghian/snntorch/pull/455) | Add neuron_from_equations(): generate a custom neuron class from st... | Merged 2026-09 |
+| [snntorch](https://github.com/jeshraghian/snntorch) | [#453](https://github.com/jeshraghian/snntorch/pull/453) | Add SynapticDelay: per-channel axonal/synaptic delay with a learnab... | Merged 2026-09 |
+| [snntorch](https://github.com/jeshraghian/snntorch) | [#441](https://github.com/jeshraghian/snntorch/pull/441) | Fix LeakyParallel silently ignoring a per-neuron beta; correct the ... | Merged 2026-09 |
+| [kornia](https://github.com/kornia/kornia) | [#4359](https://github.com/kornia/kornia/pull/4359) | fix(feature): CoarseMatching training-mode gt-padding crash + dtype... | Merged 2026-09 |
 | [kornia](https://github.com/kornia/kornia) | [#4336](https://github.com/kornia/kornia/pull/4336) | fix(geometry): bbox_to_mask position grid is exact at any image size | Merged 2026-09 |
 | [kornia](https://github.com/kornia/kornia) | [#4337](https://github.com/kornia/kornia/pull/4337) | fix(augmentation): register fill_value/sigma as buffers, not plain ... | Merged 2026-09 |
 | [ultralytics](https://github.com/ultralytics/ultralytics) | [#26075](https://github.com/ultralytics/ultralytics/pull/26075) | Remove stale SAM3 decoder coordinate caches | Merged 2026-09 |
