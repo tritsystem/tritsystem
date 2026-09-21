@@ -25,10 +25,11 @@ record, including the open PRs still in review and the honest negatives, is in
 [research-portfolio/oss](https://github.com/tritsystem/research-portfolio/tree/main/oss).
 
 <!-- OSS-STATUS:START -->
-**15 merged &middot; 4 reported &amp; fixed upstream** &middot; refreshed 2026-09-20 20:32 UTC
+**16 merged &middot; 4 reported &amp; fixed upstream** &middot; refreshed 2026-09-21 09:18 UTC
 
 | Repo | # | What | Status |
 |---|---|---|---|
+| [DeepSpeed](https://github.com/deepspeedai/DeepSpeed) | [#8565](https://github.com/deepspeedai/DeepSpeed/pull/8565) | Fix memory leak and NULL-deref in shm_initialize | Merged 2026-09 |
 | [snntorch](https://github.com/jeshraghian/snntorch) | [#455](https://github.com/jeshraghian/snntorch/pull/455) | Add neuron_from_equations(): generate a custom neuron class from st... | Merged 2026-09 |
 | [snntorch](https://github.com/jeshraghian/snntorch) | [#453](https://github.com/jeshraghian/snntorch/pull/453) | Add SynapticDelay: per-channel axonal/synaptic delay with a learnab... | Merged 2026-09 |
 | [snntorch](https://github.com/jeshraghian/snntorch) | [#441](https://github.com/jeshraghian/snntorch/pull/441) | Fix LeakyParallel silently ignoring a per-neuron beta; correct the ... | Merged 2026-09 |

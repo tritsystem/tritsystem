@@ -69,6 +69,7 @@ AUTHORED = [
     ("pytorch/pytorch", 196168),
     ("pytorch/pytorch", 196170),
     ("apache/arrow", 51167),
+    ("deepspeedai/DeepSpeed", 8565),
 ]
 
 # (repo, reported_issue, fixing_pr, credited_to) -- a bug reported here as an
