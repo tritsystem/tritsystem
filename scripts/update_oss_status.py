@@ -70,6 +70,11 @@ AUTHORED = [
     ("pytorch/pytorch", 196170),
     ("apache/arrow", 51167),
     ("deepspeedai/DeepSpeed", 8565),
+    ("cfengine/core", 6358),
+    ("huggingface/peft", 3783),
+    ("huggingface/pytorch-image-models", 2794),
+    ("huggingface/pytorch-image-models", 2799),
+    ("lucidrains/x-transformers", 362),
 ]
 
 # (repo, reported_issue, fixing_pr, credited_to) -- a bug reported here as an

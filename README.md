@@ -25,10 +25,11 @@ record, including the open PRs still in review and the honest negatives, is in
 [research-portfolio/oss](https://github.com/tritsystem/research-portfolio/tree/main/oss).
 
 <!-- OSS-STATUS:START -->
-**18 merged &middot; 4 reported &amp; fixed upstream** &middot; refreshed 2026-09-24 11:22 UTC
+**19 merged &middot; 4 reported &amp; fixed upstream** &middot; refreshed 2026-09-24 11:24 UTC
 
 | Repo | # | What | Status |
 |---|---|---|---|
+| [core](https://github.com/cfengine/core) | [#6358](https://github.com/cfengine/core/pull/6358) | Fix use-after-free and double-free in RemoveFilament | Merged 2026-09 |
 | [kornia](https://github.com/kornia/kornia) | [#4361](https://github.com/kornia/kornia/pull/4361) | fix(geometry): render_gaussian2d pixel-coordinate linspace built at... | Merged 2026-09 |
 | [kornia](https://github.com/kornia/kornia) | [#4360](https://github.com/kornia/kornia/pull/4360) | fix(enhance): image_histogram2d bin centers built at image.dtype | Merged 2026-09 |
 | [DeepSpeed](https://github.com/deepspeedai/DeepSpeed) | [#8565](https://github.com/deepspeedai/DeepSpeed/pull/8565) | Fix memory leak and NULL-deref in shm_initialize | Merged 2026-09 |
