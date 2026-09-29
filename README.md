@@ -25,10 +25,12 @@ record, including the open PRs still in review and the honest negatives, is in
 [research-portfolio/oss](https://github.com/tritsystem/research-portfolio/tree/main/oss).
 
 <!-- OSS-STATUS:START -->
-**19 merged &middot; 4 reported &amp; fixed upstream** &middot; refreshed 2026-09-24 11:24 UTC
+**21 merged &middot; 4 reported &amp; fixed upstream** &middot; refreshed 2026-09-29 19:41 UTC
 
 | Repo | # | What | Status |
 |---|---|---|---|
+| [snntorch](https://github.com/jeshraghian/snntorch) | [#454](https://github.com/jeshraghian/snntorch/pull/454) | Add homeostasis: adaptive, time-varying threshold on SpikingNeuron | Merged 2026-09 |
+| [ansible](https://github.com/ansible/ansible) | [#87503](https://github.com/ansible/ansible/pull/87503) | vars: copy facts in set_host_facts() to stop cross-host fact aliasi... | Merged 2026-09 |
 | [core](https://github.com/cfengine/core) | [#6358](https://github.com/cfengine/core/pull/6358) | Fix use-after-free and double-free in RemoveFilament | Merged 2026-09 |
 | [kornia](https://github.com/kornia/kornia) | [#4361](https://github.com/kornia/kornia/pull/4361) | fix(geometry): render_gaussian2d pixel-coordinate linspace built at... | Merged 2026-09 |
 | [kornia](https://github.com/kornia/kornia) | [#4360](https://github.com/kornia/kornia/pull/4360) | fix(enhance): image_histogram2d bin centers built at image.dtype | Merged 2026-09 |
