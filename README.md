@@ -25,10 +25,12 @@ record, including the open PRs still in review and the honest negatives, is in
 [research-portfolio/oss](https://github.com/tritsystem/research-portfolio/tree/main/oss).
 
 <!-- OSS-STATUS:START -->
-**21 merged &middot; 4 reported &amp; fixed upstream** &middot; refreshed 2026-09-29 19:41 UTC
+**23 merged &middot; 4 reported &amp; fixed upstream** &middot; refreshed 2026-10-19 07:09 UTC
 
 | Repo | # | What | Status |
 |---|---|---|---|
+| [MONAI](https://github.com/Project-MONAI/MONAI) | [#9104](https://github.com/Project-MONAI/MONAI/pull/9104) | fix(networks): AffineHead follows the module's dtype, not just device | Merged 2026-10 |
+| [MONAI](https://github.com/Project-MONAI/MONAI) | [#9103](https://github.com/Project-MONAI/MONAI/pull/9103) | fix(losses): BarlowTwinsLoss preserves float16/bfloat16 input dtype | Merged 2026-10 |
 | [snntorch](https://github.com/jeshraghian/snntorch) | [#454](https://github.com/jeshraghian/snntorch/pull/454) | Add homeostasis: adaptive, time-varying threshold on SpikingNeuron | Merged 2026-09 |
 | [ansible](https://github.com/ansible/ansible) | [#87503](https://github.com/ansible/ansible/pull/87503) | vars: copy facts in set_host_facts() to stop cross-host fact aliasi... | Merged 2026-09 |
 | [core](https://github.com/cfengine/core) | [#6358](https://github.com/cfengine/core/pull/6358) | Fix use-after-free and double-free in RemoveFilament | Merged 2026-09 |
