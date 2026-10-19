@@ -25,12 +25,17 @@ record, including the open PRs still in review and the honest negatives, is in
 [research-portfolio/oss](https://github.com/tritsystem/research-portfolio/tree/main/oss).
 
 <!-- OSS-STATUS:START -->
-**23 merged &middot; 4 reported &amp; fixed upstream** &middot; refreshed 2026-10-19 07:09 UTC
+**28 merged &middot; 4 reported &amp; fixed upstream** &middot; refreshed 2026-10-19 07:12 UTC
 
 | Repo | # | What | Status |
 |---|---|---|---|
+| [pytorch-image-models](https://github.com/huggingface/pytorch-image-models) | [#2849](https://github.com/huggingface/pytorch-image-models/pull/2849) | Fix features_only backward with grad checkpointing for in-place ste... | Merged 2026-10 |
+| [llm-compressor](https://github.com/vllm-project/llm-compressor) | [#3252](https://github.com/vllm-project/llm-compressor/pull/3252) | [Quantization] Flag layers narrower than group_size in the early gr... | Merged 2026-10 |
 | [MONAI](https://github.com/Project-MONAI/MONAI) | [#9104](https://github.com/Project-MONAI/MONAI/pull/9104) | fix(networks): AffineHead follows the module's dtype, not just device | Merged 2026-10 |
+| [pytorch-image-models](https://github.com/huggingface/pytorch-image-models) | [#2848](https://github.com/huggingface/pytorch-image-models/pull/2848) | Fix GCViT global query mixing images within a batch | Merged 2026-10 |
+| [Model-Optimizer](https://github.com/NVIDIA/Model-Optimizer) | [#2651](https://github.com/NVIDIA/Model-Optimizer/pull/2651) | Export unquantized FP8Linear layers in the export dtype, not fp32 | Merged 2026-10 |
 | [MONAI](https://github.com/Project-MONAI/MONAI) | [#9103](https://github.com/Project-MONAI/MONAI/pull/9103) | fix(losses): BarlowTwinsLoss preserves float16/bfloat16 input dtype | Merged 2026-10 |
+| [librosa](https://github.com/librosa/librosa) | [#2106](https://github.com/librosa/librosa/pull/2106) | Preserve float32 in spectral features; add dtype= to frequency cons... | Merged 2026-09 |
 | [snntorch](https://github.com/jeshraghian/snntorch) | [#454](https://github.com/jeshraghian/snntorch/pull/454) | Add homeostasis: adaptive, time-varying threshold on SpikingNeuron | Merged 2026-09 |
 | [ansible](https://github.com/ansible/ansible) | [#87503](https://github.com/ansible/ansible/pull/87503) | vars: copy facts in set_host_facts() to stop cross-host fact aliasi... | Merged 2026-09 |
 | [core](https://github.com/cfengine/core) | [#6358](https://github.com/cfengine/core/pull/6358) | Fix use-after-free and double-free in RemoveFilament | Merged 2026-09 |

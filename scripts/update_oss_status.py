@@ -75,6 +75,16 @@ AUTHORED = [
     ("huggingface/pytorch-image-models", 2794),
     ("huggingface/pytorch-image-models", 2799),
     ("lucidrains/x-transformers", 362),
+    ("NVIDIA/Model-Optimizer", 2651),
+    ("huggingface/pytorch-image-models", 2848),
+    ("huggingface/pytorch-image-models", 2849),
+    ("librosa/librosa", 2106),
+    ("vllm-project/llm-compressor", 3252),
+    ("Project-MONAI/MONAI", 9186),
+    ("Project-MONAI/MONAI", 9187),
+    ("Project-MONAI/MONAI", 9188),
+    ("Project-MONAI/MONAI", 9189),
+    ("TorchIO-project/torchio", 1535),
 ]
 
 # (repo, reported_issue, fixing_pr, credited_to) -- a bug reported here as an
