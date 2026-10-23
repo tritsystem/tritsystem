@@ -42,6 +42,7 @@ AUTHORED = [
     ("reservoirpy/reservoirpy", 245),
     ("stefanonardo/pytorch-esn", 27),
     ("huggingface/transformers", 48509),
+    ("huggingface/transformers", 49767),
     ("pytorch/audio", 4228),
     ("lucidrains/rotary-embedding-torch", 50),
     ("lucidrains/perceiver-pytorch", 70),
