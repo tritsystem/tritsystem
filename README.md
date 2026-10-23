@@ -25,10 +25,11 @@ record, including the open PRs still in review and the honest negatives, is in
 [research-portfolio/oss](https://github.com/tritsystem/research-portfolio/tree/main/oss).
 
 <!-- OSS-STATUS:START -->
-**28 merged &middot; 4 reported &amp; fixed upstream** &middot; refreshed 2026-10-23 12:09 UTC
+**29 merged &middot; 4 reported &amp; fixed upstream** &middot; refreshed 2026-10-23 12:11 UTC
 
 | Repo | # | What | Status |
 |---|---|---|---|
+| [transformers](https://github.com/huggingface/transformers) | [#49767](https://github.com/huggingface/transformers/pull/49767) | Fix background_color handling across DeepSeek-VL and Janus image pr... | Merged 2026-10 |
 | [pytorch-image-models](https://github.com/huggingface/pytorch-image-models) | [#2849](https://github.com/huggingface/pytorch-image-models/pull/2849) | Fix features_only backward with grad checkpointing for in-place ste... | Merged 2026-10 |
 | [llm-compressor](https://github.com/vllm-project/llm-compressor) | [#3252](https://github.com/vllm-project/llm-compressor/pull/3252) | [Quantization] Flag layers narrower than group_size in the early gr... | Merged 2026-10 |
 | [MONAI](https://github.com/Project-MONAI/MONAI) | [#9104](https://github.com/Project-MONAI/MONAI/pull/9104) | fix(networks): AffineHead follows the module's dtype, not just device | Merged 2026-10 |
