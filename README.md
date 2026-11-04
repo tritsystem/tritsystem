@@ -1,34 +1,32 @@
 # Hi, I'm Gavin 👋
 
-Independent researcher working at the edge of **unconventional computing** —
-ternary and neuromorphic architectures, physical (phononic) reservoirs, and what
-happens when you put those ideas inside real software and games.
+I research **ML security and low-level systems security**. I find memory-safety, correctness and isolation bugs in machine-learning libraries and in the native code underneath them, reproduce each one through the real target, fix it upstream, and build the tools and study material that make the next one faster to find and easier to check.
 
-I build things, measure them honestly, and write down the negative results too.
-The discipline behind all of it is written down as
-[**The gbranaa4-hue Method**](https://github.com/tritsystem/research-portfolio/blob/main/METHOD.md)
-— measure don't infer, pre-register the verdict, and report the "no" as carefully
-as the "yes".
+**[Portfolio: the work, how I learn, and how it all connects](https://tritsystem.github.io/research-portfolio/)** · [Security track record](https://tritsystem.github.io/sec-portfolio/) · [The Method](https://github.com/tritsystem/research-portfolio/blob/main/METHOD.md) · [LinkedIn](https://www.linkedin.com/in/gavin-branaa-a23448170/)
 
-[LinkedIn](https://www.linkedin.com/in/gavin-branaa-a23448170/)
+## The record
 
-## 🔧 Open-source contributions (live)
-Bugs found in other people's libraries and fixed upstream — mostly a recurring
-dtype-safety class (a state/gate tensor built with `device=` but no `dtype=`, so
-float16/bfloat16 input gets silently upcast to float32), plus three new features
-(a resonate-and-fire neuron, a synaptic-delay layer, and a custom-neuron generator). This
-table lists only what has **landed**: pull requests I authored that were merged, and
-bugs I reported that a maintainer then fixed. It is rewritten daily straight from the
-GitHub API by [a workflow](.github/workflows/oss-status.yml) in this repo — every row
-is re-verified against a merged commit on each run, not hand-typed. The full audited
-record, including the open PRs still in review and the honest negatives, is in
-[research-portfolio/oss](https://github.com/tritsystem/research-portfolio/tree/main/oss).
+As of 2026-11-04, from a snapshot of every pull request I've authored in other people's repositories (98 across 54 repos):
+
+- **35 merged** fixes and features across 16 projects. That's 71% of the 49 that have been decided (95% interval 58–82%), with a median of 3.4 days from opening to merge. The other 49 are still open, and I count them as undecided, not failed.
+- **1 published security advisory:** [GHSA-gvp8-978c-rx2q](https://github.com/advisories/GHSA-gvp8-978c-rx2q) / CVE-2026-103001. `PyJWT.decode()` mutated the caller's `options` dict, so a reused dict could silently switch off claim verification.
+- **Memory safety and systems:** use-after-free and double free in [cfengine](https://github.com/cfengine/core/pull/6358), a leak and NULL dereference in [DeepSpeed's native shared-memory init](https://github.com/deepspeedai/DeepSpeed/pull/8565), allocation-failure and nftables/netlink fixes in [miniupnp](https://github.com/miniupnp/miniupnp/pulls?q=is%3Apr+author%3Atritsystem+is%3Amerged), and an authorization-boundary fix in [Woodpecker CI](https://github.com/woodpecker-ci/woodpecker/pull/7365).
+- **ML correctness:** silent precision loss, broken gradients, cross-sample leakage and state that doesn't follow `.to()`, in kornia, MONAI, timm, transformers, NVIDIA Model-Optimizer, llm-compressor, librosa, snntorch and SpikingJelly.
+- **In review:** GPU out-of-bounds write and read in bitsandbytes' 4-bit path, shown with compute-sanitizer, with the severity measured rather than assumed ([write-up](https://tritsystem.github.io/bitsandbytes-4bit-memory-safety/)).
+
+Only merged work counts. The table below is regenerated daily from the GitHub API by [a workflow](.github/workflows/oss-status.yml): it finds every merged PR I've authored and re-verifies each one before listing it.
 
 <!-- OSS-STATUS:START -->
-**29 merged &middot; 4 reported &amp; fixed upstream** &middot; refreshed 2026-10-23 12:11 UTC
+**35 merged &middot; 7 reported &amp; fixed upstream** &middot; refreshed 2026-11-04 10:31 UTC
 
 | Repo | # | What | Status |
 |---|---|---|---|
+| [miniupnp](https://github.com/miniupnp/miniupnp) | [#941](https://github.com/miniupnp/miniupnp/pull/941) | netfilter_nft: keep the netlink socket in sync when a rule-cache re... | Merged 2026-11 |
+| [miniupnp](https://github.com/miniupnp/miniupnp) | [#942](https://github.com/miniupnp/miniupnp/pull/942) | upnphttp: check malloc() when sending the 100 Continue response | Merged 2026-11 |
+| [miniupnp](https://github.com/miniupnp/miniupnp) | [#923](https://github.com/miniupnp/miniupnp/pull/923) | miniupnpd/netfilter: create DNAT rules with the kernel's highest re... | Merged 2026-11 |
+| [miniupnp](https://github.com/miniupnp/miniupnp) | [#925](https://github.com/miniupnp/miniupnp/pull/925) | miniupnpd/nftables: keep the remote host of IPv4 port mappings | Merged 2026-10 |
+| [miniupnp](https://github.com/miniupnp/miniupnp) | [#922](https://github.com/miniupnp/miniupnp/pull/922) | miniupnpd/netfilter: check calloc() results in iptables rule builders | Merged 2026-10 |
+| [woodpecker](https://github.com/woodpecker-ci/woodpecker) | [#7365](https://github.com/woodpecker-ci/woodpecker/pull/7365) | Harden store scoping for org-level secret and registry retrieval | Merged 2026-10 |
 | [transformers](https://github.com/huggingface/transformers) | [#49767](https://github.com/huggingface/transformers/pull/49767) | Fix background_color handling across DeepSeek-VL and Janus image pr... | Merged 2026-10 |
 | [pytorch-image-models](https://github.com/huggingface/pytorch-image-models) | [#2849](https://github.com/huggingface/pytorch-image-models/pull/2849) | Fix features_only backward with grad checkpointing for in-place ste... | Merged 2026-10 |
 | [llm-compressor](https://github.com/vllm-project/llm-compressor) | [#3252](https://github.com/vllm-project/llm-compressor/pull/3252) | [Quantization] Flag layers narrower than group_size in the early gr... | Merged 2026-10 |
@@ -58,52 +56,44 @@ record, including the open PRs still in review and the honest negatives, is in
 | [spikingjelly](https://github.com/fangwei123456/spikingjelly) | [#750](https://github.com/fangwei123456/spikingjelly/pull/750) | Add RAFNode: resonate-and-fire neuron | Merged 2026-09 |
 | [kornia](https://github.com/kornia/kornia) | [#4210](https://github.com/kornia/kornia/pull/4210) | fix(augmentation): auto-augment ops preserve float16 / bfloat16 inp... | Merged 2026-09 |
 | [spikingjelly](https://github.com/fangwei123456/spikingjelly) | [#743](https://github.com/fangwei123456/spikingjelly/pull/743) | Move tensor reset values with the module in MemoryModule._apply | Merged 2026-09 |
+| [compressed-tensors](https://github.com/vllm-project/compressed-tensors) | [#920](https://github.com/vllm-project/compressed-tensors/issues/920) | Group quantization of a layer with fewer columns than group_size fa... | Reported; fixed upstream by antar-ghuman ([#924](https://github.com/vllm-project/compressed-tensors/pull/924), merged 2026-10) |
+| [sentence-transformers](https://github.com/huggingface/sentence-transformers) | [#4185](https://github.com/huggingface/sentence-transformers/issues/4185) | v6: models with `Normalize` at the model root (path "" in modules.j... | Reported; fixed upstream by tomaarsen ([#4190](https://github.com/huggingface/sentence-transformers/pull/4190), merged 2026-10) |
+| [compressed-tensors](https://github.com/vllm-project/compressed-tensors) | [#919](https://github.com/vllm-project/compressed-tensors/issues/919) | [Convert] ModelOptNvfp4Converter with default/"Linear" targets rela... | Reported; fixed upstream by mottopanikeiku ([#926](https://github.com/vllm-project/compressed-tensors/pull/926), merged 2026-10) |
+| [superset](https://github.com/apache/superset) | [#43918](https://github.com/apache/superset/issues/43918) | Dataset 'Refresh columns' (fetch_metadata) doesn't bump changed_on,... | Reported; fixed upstream by gps23 ([#43921](https://github.com/apache/superset/pull/43921), merged 2026-09) |
 | [Pillow](https://github.com/python-pillow/Pillow) | [#9963](https://github.com/python-pillow/Pillow/issues/9963) | Image.copy() aliases mutable .info values (e.g. list-valued "Commen... | Reported; fixed upstream by Andrew Murray ([#9964](https://github.com/python-pillow/Pillow/pull/9964), merged 2026-09) |
 | [aiohttp](https://github.com/aio-libs/aiohttp) | [#13634](https://github.com/aio-libs/aiohttp/issues/13634) | CookieJar.update_cookies() aliases a caller-supplied Morsel instead... | Reported; fixed upstream by Sam Bull ([#13637](https://github.com/aio-libs/aiohttp/pull/13637), merged 2026-09) |
 | [scipy](https://github.com/scipy/scipy) | [#26095](https://github.com/scipy/scipy/issues/26095) | BUG: scipy.optimize.milp() silently mutates the caller's options di... | Reported; fixed upstream by j-bowhay ([#26097](https://github.com/scipy/scipy/pull/26097), merged 2026-09) |
-| [snntorch](https://github.com/jeshraghian/snntorch) | [#430](https://github.com/jeshraghian/snntorch/issues/430) | surrogate.LSO() raises TypeError — wraps the wrong autograd Function | Reported; fixed upstream by maintainers ([#418](https://github.com/jeshraghian/snntorch/pull/418), merged 2026-08) |
 <!-- OSS-STATUS:END -->
 
-## 🚀 Production infrastructure
-Real, deployed, live services — not demos.
-- **[OBSERVE Search API](https://api.observe-search.online/)** *(live product — [source](https://github.com/tritsystem/observe-api))* — a hosted, pay-per-query semantic code search API for AI agents, plus a real ACP (OpenAI/Stripe) and Google UCP-compatible agent-commerce discovery and reputation layer. Read both protocol specs directly before building, since neither one actually defines cross-merchant discovery — that gap is the product. Real Stripe billing, a live production deployment (Caddy, TLS, a reverse-proxied host), and a two-sided reputation system where trust is earned agreement between disconnected buyer/seller keys instead of a self-report. Same honest-negative-results discipline as the research below: three retrieval techniques borrowed from a competing tool were tested against its own corpus and measured net negative, documented instead of dropped quietly.
-- **[mcp-gateway](https://github.com/tritsystem/mcp-gateway)** *(private)* — a self-contained, tamper-evident audit log (hash-chained JSONL) plus rate limiting for local MCP tool servers, wired into both OBSERVE's and Spikeling's MCP tool surfaces so every tool call is logged and rate-bounded, single-operator scope, no cloud dependency.
-- **[server-guard](https://github.com/tritsystem/server-guard)** — real-time server monitoring and alerting, benchmarked head-to-head against Datadog, Wazuh, PagerDuty, and Netdata on sourced, cited pricing rather than marketing claims.
-- **[spikeling-os](https://github.com/tritsystem/spikeling-os)** — a from-scratch x86_64 kernel whose task scheduler is driven by a spiking neural network — the same Spikeling runtime below, running as real kernel-level control logic instead of a simulation of one.
+## Low-level systems
 
-## 🔬 Research
+- **[spikeling-os](https://github.com/tritsystem/spikeling-os)**: a from-scratch x86_64 kernel (Rust) with its own filesystem, ELF loader, processes and an in-kernel subset-C compiler. Every milestone is verified by two QEMU boots and hand-computed self-tests. Differential fuzzing of the compiler found and fixed real silent miscompiles: 64-bit literals and case labels truncated to 32 bits, and a `continue` inside a switch that had been dropped for 75 milestones.
+- **[Native seam audit](https://github.com/tritsystem/ml-security-curriculum/tree/main/Native%20Seam%20Audit)**: a procedure for the Python-to-C/C++/CUDA boundary of ML libraries. Each of its 9 sanitizer and fuzzer configurations is validated on a planted bug before it's trusted, and the blind spots are recorded.
+- **[pytest-numba-cache](https://github.com/tritsystem/pytest-numba-cache)**: fixes a parallel cache-write race. Crashes fell from 8 of 10 rounds to 0 of 10 (measured on Windows).
+- **[baton](https://github.com/tritsystem/baton)**: three LoRA adapters on one frozen model with pre-filled KV caches, hardened against a cache-position bug that ended in a CUDA device-side assert.
 
-**Ternary & neuromorphic computing**
-- **[012-trit-search](https://github.com/tritsystem/012-trit-search)** — ternary-computing research, and its shipping product **OBSERVE**: local, private semantic code search (desktop GUI / CLI / MCP server) with a one-line install. Nothing leaves your machine. Now includes a chunk-provenance/lineage layer (tracks a chunk's edit history across commits), hybrid (lexical + semantic) search, and an incremental indexer so re-indexing a repo only touches what changed.
-- **[methodlm](https://github.com/tritsystem/methodlm)** — a verifiable causal-reasoning harness: pre-registers every test, runs real backdoor adjustment (with a robustness value), and keeps an honest ledger so any LLM must *prove* its causal claims. A new REFUTE tool runs DoWhy-backed causal refutation (placebo treatment, random common cause, subset validation) against every accepted claim, and a real-world benchmark suite now covers 10 cited public datasets plus this portfolio's own live server-guard telemetry. Optional ternary second witness via the same `tritkit` readout as OBSERVE.
-- **[Spikeling](https://github.com/tritsystem/Spikeling)** — a DSL + runtime for spiking neural networks that runs the *same* `.spk` brain on Python, C, Verilog, and Godot backends. Ships a Godot game-AI plugin, an MCP server exposing the runtime as agent tools, and a real hardware sensor-adapter layer (acoustic, system telemetry, video confirmed against physical devices).
-- **[llama-demo](https://github.com/tritsystem/llama-demo)** — genuinely free (Ollama, $0 API cost) local-model experiments applying methodlm's causal-reasoning discipline to LLM tooling: a local coding-agent dispatcher, model vet/quantize/finetune scripts, and honest negative results (a local 7B model failed to fix a real bug even when handed the exact correct lesson).
+## ML research
 
-**Phononic / MEMS reservoir computing**
-- **[quasicrystal-mems-reservoir](https://github.com/tritsystem/quasicrystal-mems-reservoir)** — finite-element study of quasicrystal-perforated MEMS resonators, and what their mode structure can (and cannot) compute as a physical reservoir. Includes the paper.
-- **[symmetry-selection-rule](https://github.com/tritsystem/symmetry-selection-rule)** — a symmetry selection rule for computation in those reservoirs.
-- **[topological-phononics](https://github.com/tritsystem/topological-phononics)** — does topological structure make an analog (SSH) reservoir tolerate a dead element? A pre-registered, honestly-scoped simulation study — boundary conditions and negative results reported as carefully as the positives.
+Pre-registered studies with bounded or negative results, reported as such.
 
-## 🎮 Games (built on the same spiking-brain engine)
-Both are in active testing — expect bugs, and some builds may not be playable end-to-end.
-- **[tribe](https://github.com/tritsystem/tribe)** — a survival/RTS sim where every NPC (tribe members, animals, rival AI) is driven by a small spiking neural network instead of a behavior tree.
-- **[horde-defense-beta](https://github.com/tritsystem/horde-defense-beta)** — a 3D horde-defense game with a deck-building creep system.
+- **[Spikeling](https://github.com/tritsystem/Spikeling)**: one spiking-network description runs on Python, C, Verilog and GDScript backends. Event-driven execution was 16–29× faster at low activity, but its resonator neuron didn't beat Goertzel or FFT.
+- **Heterogeneous neuron ensembles**: a mixed-type ensemble beat all-LIF 60/60 vs 30/60 in Python ([study](https://github.com/tritsystem/heterogeneous-neuron-ontology)). Its kernel port went through a full retraction (a false positive), then a measured 29/32 vs 12/32.
+- **[OBSERVE / ternary weights](https://github.com/tritsystem/012-trit-search)**: 20× compression for 7.35 points of accuracy. Local semantic code search that grep still beats when you know the identifier.
+- **[methodlm](https://github.com/tritsystem/methodlm)**: a causal-reasoning harness that cut false causal claims from 100% to about 1%. **[topological-phononics](https://github.com/tritsystem/topological-phononics)** ([preprint](https://doi.org/10.5281/zenodo.21305151)): topological protection holds exactly when chiral symmetry does, and the idealized gain doesn't transfer to hardware.
 
-## 🛠️ Applied builds
-Practical prototypes for real hardware, held to the same standard as the
-research above: verify it actually works before calling it done.
-- **[doorcam](https://github.com/tritsystem/doorcam)** — a regular USB webcam becomes a driveway monitor: YOLOv8 person/vehicle detection restricted to a hand-drawn driveway boundary, Discord webhook alerts with snapshots, and a live MJPEG feed built for screen-sharing into Discord via its native Go Live (not a bot faking video, which would violate Discord's ToS).
-- **[pond-health](https://github.com/tritsystem/pond-health)** — predicts pond water-quality problems (oxygen crashes, algae blooms) before they're visible and recommends organic fixes. Transparent trend-based prediction rather than a black-box model, since there's no real historical sensor data yet to train one honestly. Every run logs to SQLite, visualized in a Grafana dashboard whose color thresholds are generated straight from the same code the app alerts on. A second detector runs the real Spikeling engine (below) as a spiking neural network alongside the trend predictor — honestly measured against it rather than assumed to be better: it never false-alarms, but gives no early warning, the opposite tradeoff of the trend predictor.
-- **[sensor-duo](https://github.com/tritsystem/sensor-duo)** — the trend + spiking + SQLite + Grafana pattern above, extracted into a reusable toolkit after building it by hand twice. Generic over any named numeric channel (a temperature, how long someone's lingered in a camera frame, anything with a float), with a normalized schema so a new channel never needs a migration, and a runnable end-to-end demo proving it outside the pond-specific context it came from.
+## Tools I built for the hunt
 
-## 📖 Study guide
-- **[the-playbook](https://github.com/tritsystem/the-playbook)** — a self-study reference across this whole portfolio, taught from scratch, every claim a real measured number pulled from the corresponding repo.
+- **[reagent](https://github.com/tritsystem/reagent)**: 40 bug detectors (32 Python, 8 C) that nominate code from AST patterns, then confirm by running it.
+- **[crawlspike](https://github.com/tritsystem/crawlspike)**: a crawler for "one path honors a flag, its sibling drops it". On real OSS so far it has found 5 bugs in itself and 0 in its targets, and it says so.
+- **[sec-portfolio](https://github.com/tritsystem/sec-portfolio)**: the track record, regenerated from the real merged diffs with no model in the loop.
 
-## The through-line
-Two research threads — neuromorphic and phononic — that keep testing the same
-question: **when does structure/symmetry actually *help* computation?** That
-question doesn't stay theoretical: the same neuromorphic engine drives two
-games and a from-scratch kernel scheduler, and the same discipline — measure
-it, verify it, report what actually happened, negative results included —
-carries all the way through to production software people can actually pay
-for and depend on, not just research code that stops at a benchmark script.
+## How I learn
+
+- **[The Method](https://github.com/tritsystem/research-portfolio/blob/main/METHOD.md)**: measure, don't infer; validate the instrument on a planted case first; pre-register the verdict; report the worst slice; retract overclaims by name.
+- **An evidence ladder, T0 to T5**: from a grep hit to a fix whose sibling code has been searched and guarded. A finding needs T3 (reproduced through the real target), I file at T4, and I never round up.
+- **Study material**: an [ML systems security curriculum](https://github.com/tritsystem/ml-security-curriculum) (262 checked links, an 8-hour course, threat models), the [ML memory ladder](https://tritsystem.github.io/ml-memory-ladder/) (16 C++/Python labs, each built on a real bug I fixed), the [ML ladder](https://tritsystem.github.io/ml-ladder/), and [the playbook](https://tritsystem.github.io/the-playbook/).
+- **A private research vault**: every result is logged the same day, negatives included (575 work notes, 120 lessons). Mistakes become lessons, and lessons become the rules I check before any outward action.
+
+The [portfolio page](https://tritsystem.github.io/research-portfolio/#map) maps how these connect: the curriculum teaches the evidence ladder, the ladder governs the audits, the audits produce fixes, and the fixes become labs in the memory ladder.
+
+<sub>I use an AI coding assistant heavily for reproducing, testing and drafting. Every claim here is checked against the public record, and findings still under coordinated disclosure are deliberately left out.</sub>

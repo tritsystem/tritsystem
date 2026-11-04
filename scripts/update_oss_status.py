@@ -91,11 +91,19 @@ AUTHORED = [
 # (repo, reported_issue, fixing_pr, credited_to) -- a bug reported here as an
 # issue that a maintainer then fixed with their own PR. Rendered only if the
 # fixing PR is currently merged (verified live, never asserted).
+#
+# snntorch #430 -> #418 was removed 2026-11-04: #418 was opened 2026-03-27 by
+# another contributor, months before the issue (2026-07-06), so the report did
+# not cause the fix. The four added rows were each verified as the fix that
+# closed the reported issue (GraphQL ClosedEvent.closer).
 FIXED_UPSTREAM = [
     ("python-pillow/Pillow", 9963, 9964, "Andrew Murray"),
     ("aio-libs/aiohttp", 13634, 13637, "Sam Bull"),
     ("scipy/scipy", 26095, 26097, "j-bowhay"),
-    ("jeshraghian/snntorch", 430, 418, "maintainers"),
+    ("huggingface/sentence-transformers", 4185, 4190, "tomaarsen"),
+    ("vllm-project/compressed-tensors", 920, 924, "antar-ghuman"),
+    ("vllm-project/compressed-tensors", 919, 926, "mottopanikeiku"),
+    ("apache/superset", 43918, 43921, "gps23"),
 ]
 
 TOKEN = os.environ.get("GITHUB_TOKEN", "")
@@ -129,10 +137,37 @@ def _short(title, n=70):
     return title if len(title) <= n else title[: n - 3] + "..."
 
 
+AUTHOR = "tritsystem"
+
+
+def searched_authored():
+    """Every merged PR authored here in someone else's repository, from GitHub
+    search, so a new merge appears without editing AUTHORED (the hand list
+    missed six merges between 2026-10-23 and 2026-11-04)."""
+    found, page = [], 1
+    while True:
+        q = f"author:{AUTHOR}+is:pr+is:merged+-user:{AUTHOR}"
+        try:
+            d = api_get(f"/search/issues?q={q}&per_page=100&page={page}")
+        except urllib.error.HTTPError as e:
+            print(f"  ! search page {page}: HTTP {e.code}", file=sys.stderr)
+            break
+        items = d.get("items") or []
+        for it in items:
+            m = re.match(r"https://api\.github\.com/repos/([^/]+/[^/]+)$", it.get("repository_url", ""))
+            if m:
+                found.append((m.group(1), it["number"]))
+        if len(items) < 100:
+            break
+        page += 1
+    return found
+
+
 def authored_rows():
-    """Merged authored PRs, most-recent first."""
+    """Merged authored PRs, most-recent first: the hand list plus everything
+    search finds, each re-verified as merged before it is rendered."""
     rows = []
-    for repo, number in AUTHORED:
+    for repo, number in sorted(set(AUTHORED) | set(searched_authored())):
         try:
             d = api_get(f"/repos/{repo}/pulls/{number}")
         except urllib.error.HTTPError as e:
