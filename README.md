@@ -6,21 +6,25 @@ I research **ML security and low-level systems security**. I find memory-safety,
 
 ## The record
 
-As of 2026-11-04, from a snapshot of every pull request I've authored in other people's repositories (98 across 54 repos):
+As of 2026-11-09, from a snapshot of every pull request I've authored in other people's repositories (104 across 58 repos):
 
-- **35 merged** fixes and features across 16 projects. That's 71% of the 49 that have been decided (95% interval 58–82%), with a median of 3.4 days from opening to merge. The other 49 are still open, and I count them as undecided, not failed.
+- **38 merged** fixes and features across 18 projects. That's 73% of the 52 that have been decided (95% interval 60–83%), with a median of 3.7 days from opening to merge. The other 52 are still open, and I count them as undecided, not failed.
 - **1 published security advisory:** [GHSA-gvp8-978c-rx2q](https://github.com/advisories/GHSA-gvp8-978c-rx2q) / CVE-2026-103001. `PyJWT.decode()` mutated the caller's `options` dict, so a reused dict could silently switch off claim verification.
 - **Memory safety and systems:** use-after-free and double free in [cfengine](https://github.com/cfengine/core/pull/6358), a leak and NULL dereference in [DeepSpeed's native shared-memory init](https://github.com/deepspeedai/DeepSpeed/pull/8565), allocation-failure and nftables/netlink fixes in [miniupnp](https://github.com/miniupnp/miniupnp/pulls?q=is%3Apr+author%3Atritsystem+is%3Amerged), and an authorization-boundary fix in [Woodpecker CI](https://github.com/woodpecker-ci/woodpecker/pull/7365).
 - **ML correctness:** silent precision loss, broken gradients, cross-sample leakage and state that doesn't follow `.to()`, in kornia, MONAI, timm, transformers, NVIDIA Model-Optimizer, llm-compressor, librosa, snntorch and SpikingJelly.
+- **Unsafe deserialization:** replaced `eval`/`exec` metadata parsers with `ast` in [SpikeInterface](https://github.com/SpikeInterface/spikeinterface) and [probeinterface](https://github.com/SpikeInterface/probeinterface) — three merged fixes in the "loading a file runs code" class.
 - **In review:** GPU out-of-bounds write and read in bitsandbytes' 4-bit path, shown with compute-sanitizer, with the severity measured rather than assumed ([write-up](https://tritsystem.github.io/bitsandbytes-4bit-memory-safety/)).
 
 Only merged work counts. The table below is regenerated daily from the GitHub API by [a workflow](.github/workflows/oss-status.yml): it finds every merged PR I've authored and re-verifies each one before listing it.
 
 <!-- OSS-STATUS:START -->
-**35 merged &middot; 7 reported &amp; fixed upstream** &middot; refreshed 2026-11-04 10:31 UTC
+**38 merged &middot; 7 reported &amp; fixed upstream** &middot; refreshed 2026-11-09 11:33 UTC
 
 | Repo | # | What | Status |
 |---|---|---|---|
+| [probeinterface](https://github.com/SpikeInterface/probeinterface) | [#476](https://github.com/SpikeInterface/probeinterface/pull/476) | Parse .prb with ast instead of exec in read_prb | Merged 2026-11 |
+| [spikeinterface](https://github.com/SpikeInterface/spikeinterface) | [#4918](https://github.com/SpikeInterface/spikeinterface/pull/4918) | Use ast.literal_eval instead of eval in parse_sinaps_meta | Merged 2026-11 |
+| [spikeinterface](https://github.com/SpikeInterface/spikeinterface) | [#4916](https://github.com/SpikeInterface/spikeinterface/pull/4916) | Parse params.py with ast instead of exec in read_python | Merged 2026-11 |
 | [miniupnp](https://github.com/miniupnp/miniupnp) | [#941](https://github.com/miniupnp/miniupnp/pull/941) | netfilter_nft: keep the netlink socket in sync when a rule-cache re... | Merged 2026-11 |
 | [miniupnp](https://github.com/miniupnp/miniupnp) | [#942](https://github.com/miniupnp/miniupnp/pull/942) | upnphttp: check malloc() when sending the 100 Continue response | Merged 2026-11 |
 | [miniupnp](https://github.com/miniupnp/miniupnp) | [#923](https://github.com/miniupnp/miniupnp/pull/923) | miniupnpd/netfilter: create DNAT rules with the kernel's highest re... | Merged 2026-11 |
