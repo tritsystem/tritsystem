@@ -18,7 +18,7 @@ As of 2026-11-09, from a snapshot of every pull request I've authored in other p
 Only merged work counts. The table below is regenerated daily from the GitHub API by [a workflow](.github/workflows/oss-status.yml): it finds every merged PR I've authored and re-verifies each one before listing it.
 
 <!-- OSS-STATUS:START -->
-**38 merged &middot; 7 reported &amp; fixed upstream** &middot; refreshed 2026-11-09 11:33 UTC
+**38 merged &middot; 7 reported &amp; fixed upstream** &middot; refreshed 2026-11-09 11:36 UTC
 
 | Repo | # | What | Status |
 |---|---|---|---|
